@@ -4,7 +4,12 @@
 FROM java:openjdk-8-jdk
 
 # install node
-RUN apt-get install -y nodejs
+RUN apt-get install git-core curl build-essential openssl libssl-dev \
+ && git clone https://github.com/nodejs/node.git \
+ && cd node \
+ && ./configure \
+ && make \
+ && sudo make install
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
     webdriver-manager update && \
