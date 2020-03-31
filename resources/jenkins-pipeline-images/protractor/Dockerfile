@@ -4,7 +4,7 @@
 FROM java:openjdk-8-jdk
 
 # install node
-RUN sudo apt-get purge --auto-remove nodejs && \
+RUN apt-get purge --auto-remove nodejs && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs
 
