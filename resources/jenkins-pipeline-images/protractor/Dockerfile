@@ -4,7 +4,7 @@
 FROM java:openjdk-8-jdk
 
 # install node
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get install -y nodejs
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
