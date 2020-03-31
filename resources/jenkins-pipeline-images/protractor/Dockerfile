@@ -3,8 +3,9 @@
 
 FROM java:openjdk-8-jdk
 
+RUN sed -i '/jessie-updates/d' /etc/apt/sources.list  # Now archived \
 # install node
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \

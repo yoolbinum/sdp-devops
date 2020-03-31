@@ -3,7 +3,7 @@
 global:
   openshift: true
   domain: apps.ocp.example.com
-  sourceRepositoryUrl: "https://github.com/boozallen/sdp-helm-chart"
+  sourceRepositoryUrl: "https://github.com/yoolbinum/sdp-devops"
   sourceSecret: github
 
 chromeDockerContextDir: resources/selenium_grid/chrome

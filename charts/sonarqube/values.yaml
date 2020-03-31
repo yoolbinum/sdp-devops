@@ -4,7 +4,7 @@ global:
   openshift: true
   persistentStorage: true
   domain: apps.ocp.example.com
-  sourceRepositoryUrl: "https://github.com/boozallen/sdp-helm-chart"
+  sourceRepositoryUrl: "https://github.com/yoolbinum/sdp-devops"
   sourceSecret: github
 
 #domain: null
