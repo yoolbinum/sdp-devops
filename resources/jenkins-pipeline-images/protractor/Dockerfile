@@ -3,12 +3,10 @@
 
 FROM java:openjdk-8-jdk
 
-# Remove cache
-RUN apt-get clean --dry-run
-
 # install node
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    apt-get install -y nodejs --no-cache=true
+    apt-get clean --dry-run && \
+    apt-get install -y nodejs
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
     webdriver-manager update && \
