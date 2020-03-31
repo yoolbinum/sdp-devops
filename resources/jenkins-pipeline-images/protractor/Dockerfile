@@ -3,14 +3,12 @@
 
 FROM java:openjdk-8-jdk
 
-RUN sed -i '/jessie-updates/d' /etc/apt/sources.list  # Now archived \
 # install node
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
     webdriver-manager update && \
-    apt-get update && \
     apt-get install -y xvfb wget && \
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
     dpkg --unpack google-chrome-stable_current_amd64.deb && \
