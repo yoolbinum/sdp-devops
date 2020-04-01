@@ -4,8 +4,21 @@
 FROM java:openjdk-8-jdk
 
 # install node
-RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash - && \
-    yum install -y nodejs
+if [ "x${DIST}" == "xprecise" ]; then
+  RUN echo "Calling $0"
+  RUN apt-get update
+  RUN apt-get install -y clang-3.4
+fi
+
+if [ "x${DIST}" == "xwheezy" ]; then
+  RUN echo "Calling $0"
+  RUN apt-get update
+  RUN apt-get -y install curl apt-transport-https ca-certificates
+  RUN echo "deb https://deb.nodesource.com/clang-3.4 wheezy main" >> /etc/apt/sources.list
+  RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+  RUN apt-get update
+  RUN apt-get install -y clang-3.4
+fi
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
     webdriver-manager update && \
