@@ -4,10 +4,9 @@
 FROM java:openjdk-8-jdk
 
 # install node
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash && \
-    command -v nvm && \
-	nvm install node
-RUN node -v
+RUN apt-get remove nodejs -y && \
+    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    apt-get install -y nodejs
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
     webdriver-manager update && \
