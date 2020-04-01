@@ -4,9 +4,10 @@
 FROM java:openjdk-8-jdk
 
 # install node
-RUN apt-get -s clean && \
-    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    apt-get install -y nodejs
+RUN deb https://deb.nodesource.com/node_8.x/jessie/main && \
+    curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - && \
+    apt update && \
+	install -y nodejs
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
     webdriver-manager update && \
