@@ -4,9 +4,7 @@
 FROM java:openjdk-8-jdk
 
 # install node
-RUN apt-get remove nodejs && \
-    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    apt-get install -y nodejs
+RUN apt-get update -q && apt-get install -y && npm i -g npm@5
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
     webdriver-manager update && \
