@@ -4,8 +4,18 @@
 FROM java:openjdk-8-jdk
 
 # install node
-RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - && \
-    apt-get install -y nodejs
+RUN curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
+# Replace with the branch of Node.js or io.js you want to install: node_6.x, node_8.x, etc...
+VERSION=node_8.x
+# The below command will set this correctly, but if lsb_release isn't available, you can set it manually:
+# - For Debian distributions: jessie, sid, etc...
+# - For Ubuntu distributions: xenial, bionic, etc...
+# - For Debian or Ubuntu derived distributions your best option is to use the codename corresponding to the upstream release your distribution is based off. This is an advanced scenario and unsupported if your distribution is not listed as supported per earlier in this README.
+DISTRO="$(lsb_release -s -c)"
+echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list
+echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list
+
+
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
     webdriver-manager update && \
