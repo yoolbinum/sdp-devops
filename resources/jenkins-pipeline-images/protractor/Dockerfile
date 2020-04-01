@@ -4,10 +4,9 @@
 FROM java:openjdk-8-jdk
 
 # install node
-RUN deb https://deb.nodesource.com/node_8.x/jessie/main && \
-    curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - && \
-    apt update && \
-	install -y nodejs
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+RUN nvm install node
+RUN node -v
 
 RUN npm install -g protractor gulp jasmine-spec-reporter && \
     webdriver-manager update && \
